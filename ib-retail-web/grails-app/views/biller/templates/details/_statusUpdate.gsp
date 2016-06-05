@@ -1,0 +1,1 @@
+${message(code:'biller.templates.details.statusupdate.statusupdation.success.message') }
