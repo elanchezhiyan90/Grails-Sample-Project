@@ -1,0 +1,1 @@
+<g:hiddenField name="populatedAmount" id="populatedAmount" value="${goalAutoModel}" />
