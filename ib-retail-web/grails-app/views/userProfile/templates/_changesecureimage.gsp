@@ -1,0 +1,3 @@
+<g:hiddenField name="advertisementidValue" id="advertisementidValue" value="${advertisements?.id}"/>
+<g:select name="advertiserId" id="advertiserId"  from="${ChangeSecureImageModel?.advertisers}" optionValue="description" optionKey="idVersion"
+       		   noSelection="['':'-Choose -']" required="required" data-errormessage="${message(code:'advertisements.templates.addcampaign.companyname.errormessage') }" />

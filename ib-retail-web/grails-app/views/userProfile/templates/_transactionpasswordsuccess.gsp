@@ -1,0 +1,1 @@
+<p>${message(code:'userprofile.template.transactionpasswordsuccess.success.message')}</b></p>
