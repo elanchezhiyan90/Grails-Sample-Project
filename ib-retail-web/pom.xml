@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.vayana</groupId>
+		<artifactId>vayana-web</artifactId>
+		<version>11.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.vayana.ib</groupId>
+	<artifactId>ib-retail-web</artifactId>
+	<packaging>grails-app</packaging>
+	<!-- <packaging>grails-plugin</packaging> -->
+	<name>ib-retail-web</name>
+	<version>1.0-SNAPSHOT</version>
+	<description>ib-retail-web</description>
+
+	<properties>
+		<com.vayana.ib.bm.version>1.0-SNAPSHOT</com.vayana.ib.bm.version>
+		<com.vayana.ib.bm.pmcb.version>1.0-SNAPSHOT</com.vayana.ib.bm.pmcb.version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<fork>true</fork>
+				<fork.debug>true</fork.debug>
+			</properties>
+		</profile>
+		<profile>
+			<id>build</id>
+			<properties>
+				<fork>true</fork>
+				<fork.debug>false</fork.debug>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.vayana.bm</groupId>
+			<artifactId>bm-infra-social</artifactId>
+			<version>${com.vayana.bm.infra-version}</version>
+		</dependency>
+
+		<!-- Business manager jars -->
+		<dependency>
+			<groupId>com.vayana.ib</groupId>
+			<artifactId>ib-bm-core-client</artifactId>
+			<version>${com.vayana.ib.bm.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vayana.ib.pmcb</groupId>
+			<artifactId>pmcb-ib-bm-core-client</artifactId>
+			<version>${com.vayana.ib.bm.pmcb.version}</version>
+		</dependency> 
+		<!-- <dependency>
+			<groupId>com.vayana.ib.sbi</groupId>
+			<artifactId>sbi-ib-bm-core-client</artifactId>
+			<version>${com.vayana.ib.bm.sbi.version}</version>
+		</dependency> -->
+		<!-- Business manager jars -->
+		
+		<!--dependency>
+			<groupId>org.grails.plugins</groupId>
+			<artifactId>hdiv</artifactId>
+			<scope>compile</scope>
+			<version>1.0-RC2</version>
+			<type>zip</type>
+		</dependency-->
+		
+		<!-- <dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>1.2.8</version>
+		</dependency> -->   
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency> 
+		
+		<dependency>
+            <groupId>com.vayana.ib</groupId>
+            <artifactId>billdesk</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>zip</type>
+        </dependency>   
+	</dependencies>
+
+	<build>
+		<finalName>ib-retail-web</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.grails</groupId>
+				<artifactId>grails-maven-plugin</artifactId>
+				<configuration>
+					<fork>${fork}</fork>
+					<forkDebug>${fork.debug}</forkDebug>
+					<activateAgent>true</activateAgent>
+					<showStacktrace>true</showStacktrace>
+				</configuration>
+				<extensions>true</extensions>
+			</plugin>
+		</plugins>
+		<!-- <pluginManagement>
+			<plugins>
+				This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.grails</groupId>
+										<artifactId>
+											grails-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.3.4,)
+										</versionRange>
+										<goals>
+											<goal>validate-plugin</goal>
+											<goal>init-plugin</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement> -->
+	</build>
+</project>
