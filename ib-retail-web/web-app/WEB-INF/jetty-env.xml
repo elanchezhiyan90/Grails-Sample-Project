@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+ <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+	
+	
+	<!-- Add an EnvEntry only valid for this webapp -->
+	<New class="org.eclipse.jetty.plus.jndi.EnvEntry">
+		<Arg>spring.profiles.active</Arg>
+		<Arg type="java.lang.String">profile1,dev,web</Arg>
+	</New>
+	<New class="org.eclipse.jetty.plus.jndi.EnvEntry">
+		<Arg>spring.profiles.default</Arg>
+		<Arg type="java.lang.String">profile1,dev,web</Arg>
+	</New>
+	
+	
+	
+    
+	
+	<!-- <New id="pmcbCustomerDs" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jdbc/pmcbCustomerDs</Arg>
+		<Arg>
+			<New class="bitronix.tm.resource.jdbc.PoolingDataSource">
+				<Set name="className">oracle.jdbc.xa.client.OracleXADataSource</Set>
+				<Set name="uniqueName">pmcbCustomerDs</Set>
+				<Set name="maxPoolSize">10</Set>
+				<Set name="minPoolSize">2</Set>
+				<Set name="allowLocalTransactions">true</Set>
+				<Set name="automaticEnlistingEnabled">true</Set>
+				<Set name="useTmJoin">true</Set>
+				<Get name="driverProperties">
+					<Put name="URL">jdbc:oracle:thin:@192.168.12.35:1521:ORCL</Put>
+					<Put name="user">UAT_USER</Put>
+					<Put name="password">UAT_USER</Put>
+				</Get>
+				<Call name="init" />
+			</New>
+		</Arg>
+	</New> -->
+	<New id="sitds" class="org.eclipse.jetty.plus.jndi.Resource" >
+        <Arg>jdbc/sitds</Arg>
+        <Arg>
+           <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <Set name="driverClass">oracle.jdbc.driver.OracleDriver</Set>
+     			<Set name="jdbcUrl">jdbc:oracle:thin:@192.168.239.139:1524:IBUAT</Set>
+				<Set name="user">UAT_USER</Set>
+				<Set name="password">UAT_USER</Set>  
+            </New>
+        </Arg>
+    </New>
+    
+    <New id="uatds" class="org.eclipse.jetty.plus.jndi.Resource" >
+        <Arg>jdbc/uatds</Arg>
+        <Arg>
+           <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <Set name="driverClass">oracle.jdbc.driver.OracleDriver</Set>
+     			<Set name="jdbcUrl">jdbc:oracle:thin:@192.168.239.139:1524:IBUAT</Set>
+				<Set name="user">APP_USER</Set>
+				<Set name="password">APP_USER</Set>  
+            </New>
+        </Arg>
+    </New>
+    <New id="pmcbCustomerDs" class="org.eclipse.jetty.plus.jndi.Resource" >
+        <Arg>jdbc/pmcbCustomerDs</Arg>
+        <Arg>
+           <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <Set name="driverClass">oracle.jdbc.driver.OracleDriver</Set>
+     			<Set name="jdbcUrl">jdbc:oracle:thin:@192.168.12.35:1521:ORCL</Set>
+				<Set name="user">APP_USER</Set>
+				<Set name="password">APP_USER</Set>  
+            </New>
+        </Arg>
+    </New> 
+	<!-- 
+	<New id="demoCustomerDs" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jdbc/demoCustomerDs</Arg>
+		<Arg>
+			<New class="bitronix.tm.resource.jdbc.PoolingDataSource">
+				<Set name="className">oracle.jdbc.xa.client.OracleXADataSource</Set>
+				<Set name="uniqueName">demoCustomerDs</Set>
+				<Set name="maxPoolSize">10</Set>
+				<Set name="minPoolSize">2</Set>
+				<Set name="allowLocalTransactions">true</Set>
+				<Set name="automaticEnlistingEnabled">true</Set>
+				<Set name="useTmJoin">true</Set>
+				<Get name="driverProperties">
+					<Put name="URL">jdbc:oracle:thin:@192.168.12.35:1521:ORCL</Put>
+					<Put name="user">APP_USER</Put>
+					<Put name="password">APP_USER_35</Put>
+				</Get>
+				<Call name="init" />
+			</New>
+		</Arg>
+	</New>
+	
+	<New id="khcbCustomerDs" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jdbc/khcbCustomerDs</Arg>
+		<Arg>
+			<New class="bitronix.tm.resource.jdbc.PoolingDataSource">
+				<Set name="className">oracle.jdbc.xa.client.OracleXADataSource</Set>
+				<Set name="uniqueName">khcbCustomerDs</Set>
+				<Set name="maxPoolSize">10</Set>
+				<Set name="minPoolSize">2</Set>
+				<Set name="allowLocalTransactions">true</Set>
+				<Set name="automaticEnlistingEnabled">true</Set>
+				<Set name="useTmJoin">true</Set>
+				<Get name="driverProperties">
+					<Put name="URL">jdbc:oracle:thin:@192.168.12.35:1521:ORCL</Put>
+					<Put name="user">APP_USER</Put>
+					<Put name="password">APP_USER_35</Put>
+				</Get>
+				<Call name="init" />
+			</New>
+		</Arg>
+	</New> -->
+
+	<Call name="getConfiguration" class="bitronix.tm.TransactionManagerServices">
+		<Set name="serverId">btm-customer</Set>
+		<Set name="logPart1Filename">logs/customer/tx/btm1.tlog</Set>
+		<Set name="logPart2Filename">logs/customer/tx/btm2.tlog</Set>
+		<Set name="defaultTransactionTimeout">60000</Set>
+	</Call>
+
+	<New class="org.eclipse.jetty.plus.jndi.Transaction">
+		<Arg>
+			<Call name="getTransactionManager" class="bitronix.tm.TransactionManagerServices" />
+		</Arg>
+	</New>
+</Configure>
