@@ -1,0 +1,1 @@
+<g:hiddenField name="billamountdue" id="billamountdue" value="${billInquiryModel?.billAmountDue}"/>

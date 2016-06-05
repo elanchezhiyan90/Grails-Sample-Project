@@ -1,0 +1,1 @@
+<g:submitToRemote value="${value}" controller="${controller}" action="${action}" id="${buttonid}" update="${twoFAModule}"  before="if (checkFormValidity()) {return false;};" onSuccess=" onPaymentConfirm(data,textStatus);" />
